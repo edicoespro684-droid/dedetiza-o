@@ -4,10 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Dedetização Premium | Diagnóstico e Soluções</title>
-  <!-- Favicon: logo.png -->
   <link rel="icon" href="logo.png" type="image/png">
   <style>
-    /* Reset e estilos globais */
     * {
       margin: 0;
       padding: 0;
@@ -21,7 +19,6 @@
       overflow-x: hidden;
     }
 
-    /* Cabeçalho */
     .header {
       position: fixed;
       top: 0;
@@ -47,7 +44,6 @@
       letter-spacing: 1px;
     }
 
-    /* Logo do site: logo.png */
     .logo img {
       width: 46px;
       height: 46px;
@@ -86,7 +82,6 @@
       transform: rotate(-45deg) translate(5px, -5px);
     }
 
-    /* Menu lateral (mobile e desktop) */
     .nav-menu {
       position: fixed;
       top: 0;
@@ -126,7 +121,6 @@
       padding-left: 8px;
     }
 
-    /* Overlay para escurecer fundo quando menu aberto */
     .overlay {
       position: fixed;
       top: 0;
@@ -146,7 +140,6 @@
       pointer-events: auto;
     }
 
-    /* Hero com slider de fundo */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -185,7 +178,6 @@
       opacity: 1;
     }
 
-    /* Overlay escura para imersão */
     .hero::after {
       content: '';
       position: absolute;
@@ -197,7 +189,6 @@
       z-index: 1;
     }
 
-    /* Conteúdo do quiz (card) */
     .quiz-container {
       position: relative;
       z-index: 10;
@@ -226,7 +217,6 @@
       font-size: 1.1rem;
     }
 
-    /* Passos do quiz */
     .quiz-step {
       display: none;
       animation: fadeIn 0.4s ease;
@@ -270,7 +260,6 @@
       margin: 2rem 0 1rem;
     }
 
-    /* ----- Cards de opção (local) mais profissionais ----- */
     .option-card {
       background: #ffffff;
       border: 2px solid #c8e6c9;
@@ -298,7 +287,6 @@
       box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
     }
 
-    /* Moldura da imagem: formato padronizado, corte elegante */
     .option-img-wrap {
       width: 100%;
       height: 150px;
@@ -430,6 +418,12 @@
       box-shadow: 0 10px 20px rgba(46, 125, 50, 0.4);
     }
 
+    .btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
     .btn-outline {
       background: transparent;
       color: #2e7d32;
@@ -448,7 +442,6 @@
       margin-top: 1.5rem;
     }
 
-    /* Formulário */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -505,7 +498,6 @@
       color: #1b5e20;
     }
 
-    /* ---------- TELA DE AGRADECIMENTO (NOVA) ---------- */
     .thank-you-screen {
       display: none;
       text-align: center;
@@ -578,7 +570,6 @@
       font-size: 0.95rem;
     }
 
-    /* Seções extras */
     .section {
       padding: 5rem 2rem;
       max-width: 1300px;
@@ -664,7 +655,6 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Rodapé */
     footer {
       background: #1b3b1b;
       color: #d9f0d9;
@@ -673,7 +663,6 @@
       margin-top: 3rem;
     }
 
-    /* Responsividade */
     @media (max-width: 768px) {
       .header {
         padding: 0.6rem 1.2rem;
@@ -778,10 +767,8 @@
 </head>
 <body>
 
-  <!-- Cabeçalho fixo -->
   <header class="header">
     <div class="logo">
-      <!-- Logo do site: logo.png -->
       <img src="logo.png" alt="Logo Dedetização Premium">
       <span>Controle de Pragas</span>
     </div>
@@ -790,10 +777,8 @@
     </button>
   </header>
 
-  <!-- Overlay do menu -->
   <div class="overlay" id="overlay"></div>
 
-  <!-- Menu de navegação lateral -->
   <nav class="nav-menu" id="navMenu">
     <a href="#hero" class="nav-link">Início</a>
     <a href="#sobre" class="nav-link">Sobre Nós</a>
@@ -801,21 +786,16 @@
     <a href="#hero" class="nav-link">Diagnóstico</a>
   </nav>
 
-  <!-- Hero + Quiz -->
   <section class="hero" id="hero">
-    <div class="slider-bg" id="sliderBg">
-      <!-- Slides serão inseridos via JS para garantir funcionamento -->
-    </div>
+    <div class="slider-bg" id="sliderBg"></div>
 
     <div class="quiz-container">
       <h1>Diagnóstico Profissional</h1>
       <p class="subhead">Responda e receba o pacote ideal para sua necessidade</p>
 
-      <!-- STEP 1: Tipo de local -->
       <div class="quiz-step active" id="step1">
         <div class="step-title"><span>1</span> Qual o tipo de local?</div>
         <div class="options-grid" id="localOptions">
-          <!-- Card Residencial -->
           <div class="option-card" data-value="residencial" data-nome="Residencial">
             <div class="option-img-wrap">
               <img src="images (1).jpg" alt="Residencial">
@@ -825,7 +805,6 @@
               <p>Casas e apartamentos</p>
             </div>
           </div>
-          <!-- Card Comercial -->
           <div class="option-card" data-value="comercial" data-nome="Comercial">
             <div class="option-img-wrap">
               <img src="images (2).jpg" alt="Comercial">
@@ -835,7 +814,6 @@
               <p>Lojas, escritórios, indústrias</p>
             </div>
           </div>
-          <!-- Card Rural -->
           <div class="option-card" data-value="rural" data-nome="Rural">
             <div class="option-img-wrap">
               <img src="Dedetizacao-de-terrenos-conheca-as-principais-metodologias-utilizadas-no-controle-de-pragas.webp" alt="Rural">
@@ -849,49 +827,56 @@
         <button class="btn" id="nextStep1" disabled>Continuar</button>
       </div>
 
-      <!-- STEP 2: Pacotes (dinâmico) -->
       <div class="quiz-step" id="step2">
         <div class="step-title"><span>2</span> Escolha o porte do local</div>
-        <div id="packageContainer" class="package-grid">
-          <!-- Pacotes são inseridos via JS -->
-        </div>
+        <div id="packageContainer" class="package-grid"></div>
         <div class="btn-group">
           <button class="btn btn-outline" id="backStep2">Voltar</button>
           <button class="btn" id="nextStep2" disabled>Continuar</button>
         </div>
       </div>
 
-      <!-- STEP 3: Formulário -->
       <div class="quiz-step" id="step3">
         <div class="step-title"><span>3</span> Seus dados para contato</div>
-        <div class="resumo-diagnostico" id="resumoDiagnostico">
-          <!-- Resumo do diagnóstico -->
-        </div>
-        <form id="formDiagnostico">
+        <div class="resumo-diagnostico" id="resumoDiagnostico"></div>
+
+        <!-- FORMULÁRIO INTEGRADO COM WEB3FORMS -->
+        <form id="formDiagnostico" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Access Key do Web3Forms -->
+          <input type="hidden" name="access_key" value="3c5d8fe8-5c0c-4faa-8109-aa732fc5723a">
+          <!-- Assunto do e-mail -->
+          <input type="hidden" name="subject" value="Novo Diagnóstico de Dedetização">
+          <!-- Nome do remetente que aparecerá no e-mail -->
+          <input type="hidden" name="from_name" value="Site Dedetização Premium">
+          <!-- Campos ocultos preenchidos dinamicamente com dados do quiz -->
+          <input type="hidden" name="Tipo de Local" id="hiddenTipoLocal">
+          <input type="hidden" name="Porte do Local" id="hiddenPorte">
+          <input type="hidden" name="Valor Estimado" id="hiddenValor">
+
           <div class="form-grid">
             <div class="form-group full">
               <label for="nome">Nome completo *</label>
-              <input type="text" id="nome" required placeholder="Seu nome">
+              <input type="text" id="nome" name="Nome Completo" required placeholder="Seu nome">
             </div>
             <div class="form-group full" id="empresaGroup" style="display:none;">
               <label for="empresa">Nome da empresa</label>
-              <input type="text" id="empresa" placeholder="Nome da empresa">
+              <input type="text" id="empresa" name="Nome da Empresa" placeholder="Nome da empresa">
             </div>
             <div class="form-group">
               <label for="whatsapp">WhatsApp *</label>
-              <input type="tel" id="whatsapp" required placeholder="(11) 99999-9999">
+              <input type="tel" id="whatsapp" name="WhatsApp" required placeholder="(11) 99999-9999">
             </div>
             <div class="form-group">
               <label for="email">E-mail *</label>
-              <input type="email" id="email" required placeholder="seu@email.com">
+              <input type="email" id="email" name="Email do Cliente" required placeholder="seu@email.com">
             </div>
             <div class="form-group full">
               <label for="endereco">Endereço completo *</label>
-              <input type="text" id="endereco" required placeholder="Rua, número, bairro, cidade, estado">
+              <input type="text" id="endereco" name="Endereço Completo" required placeholder="Rua, número, bairro, cidade, estado">
             </div>
             <div class="form-group full">
               <label for="obs">Observações adicionais</label>
-              <textarea id="obs" rows="2" placeholder="Descreva o problema..."></textarea>
+              <textarea id="obs" name="Observações" rows="2" placeholder="Descreva o problema..."></textarea>
             </div>
           </div>
           <div class="btn-group">
@@ -901,7 +886,6 @@
         </form>
       </div>
 
-      <!-- STEP 4: Tela de Agradecimento (NOVA) -->
       <div class="quiz-step" id="step4">
         <div class="thank-you-screen active">
           <div class="thank-you-icon">
@@ -918,7 +902,6 @@
     </div>
   </section>
 
-  <!-- Sobre Nós -->
   <section class="section" id="sobre">
     <h2 class="section-title"><span>Sobre Nós</span></h2>
     <div class="sobre-content">
@@ -941,45 +924,40 @@
     </div>
   </section>
 
-  <!-- Contato -->
   <section class="section" id="contato">
     <h2 class="section-title"><span>Contato</span></h2>
     <div class="contato-info">
       <div class="contato-card">
-        <div class="icon"></div>
+        <div class="icon">📞</div>
         <h4>WhatsApp</h4>
         <p>(32) 9 9113-0370</p>
       </div>
       <div class="contato-card">
-        <div class="icon"></div>
+        <div class="icon">✉️</div>
         <h4>E-mail</h4>
         <p>edicoespro684@gmail.com</p>
       </div>
       <div class="contato-card">
-        <div class="icon"></div>
+        <div class="icon">⏰</div>
         <h4>Atendimento</h4>
         <p>Seg a Sáb, 7h às 19h</p>
       </div>
     </div>
   </section>
 
-  <!-- Rodapé -->
   <footer>
     <p>© 2025 Dedetiza Premium — Todos os direitos reservados.</p>
   </footer>
 
   <script>
     (function() {
-      // ---------- SLIDER DE IMAGENS (3 imagens imersivas) ----------
       const sliderBg = document.getElementById('sliderBg');
-      // Imagens com URLs de alta qualidade (dedetização / natureza / urbano)
       const images = [
         'Dedetizadora-01.webp',
         '2imagem.jpg',
         '1imagem.jpg',
       ];
 
-      // Cria slides
       images.forEach((img, index) => {
         const slide = document.createElement('div');
         slide.className = 'slide' + (index === 0 ? ' active' : '');
@@ -996,9 +974,8 @@
         slides[currentSlide].classList.add('active');
       }
 
-      setInterval(nextSlide, 5000); // Troca a cada 5 segundos
+      setInterval(nextSlide, 5000);
 
-      // ---------- MENU HAMBURGER ----------
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
       const overlay = document.getElementById('overlay');
@@ -1017,7 +994,6 @@
         });
       });
 
-      // ---------- QUIZ ----------
       const step1 = document.getElementById('step1');
       const step2 = document.getElementById('step2');
       const step3 = document.getElementById('step3');
@@ -1031,31 +1007,31 @@
       const formDiagnostico = document.getElementById('formDiagnostico');
       const resumoDiagnostico = document.getElementById('resumoDiagnostico');
       const empresaGroup = document.getElementById('empresaGroup');
+      const hiddenTipoLocal = document.getElementById('hiddenTipoLocal');
+      const hiddenPorte = document.getElementById('hiddenPorte');
+      const hiddenValor = document.getElementById('hiddenValor');
 
-      // Estado do quiz
-      let selectedLocal = null; // { value, nome }
-      let selectedPackage = null; // { porte, valor, descricao }
+      let selectedLocal = null;
+      let selectedPackage = null;
 
-      // Dados dos pacotes por tipo de local (PREÇOS AJUSTADOS)
       const pacotesPorLocal = {
         residencial: [
-          { porte: 'Pequeno', valor: 'R$ 450,00', descricao: 'Até 80m²', icon: '' },
-          { porte: 'Médio', valor: 'R$ 680,00', descricao: '80m² a 150m²', icon: '' },
-          { porte: 'Grande', valor: 'R$ 950,00', descricao: 'Acima de 150m²', icon: '' }
+          { porte: 'Pequeno', valor: 'R$ 450,00', descricao: 'Até 80m²', icon: '🏠' },
+          { porte: 'Médio', valor: 'R$ 680,00', descricao: '80m² a 150m²', icon: '🏡' },
+          { porte: 'Grande', valor: 'R$ 950,00', descricao: 'Acima de 150m²', icon: '🏘️' }
         ],
         comercial: [
-          { porte: 'Pequeno', valor: 'R$ 950,00', descricao: 'Até 200m²', icon: '' },
-          { porte: 'Médio', valor: 'R$ 1.550,00', descricao: '200m² a 500m²', icon: '' },
-          { porte: 'Grande', valor: 'R$ 2.500,00', descricao: 'Acima de 500m²', icon: '' }
+          { porte: 'Pequeno', valor: 'R$ 950,00', descricao: 'Até 200m²', icon: '🏪' },
+          { porte: 'Médio', valor: 'R$ 1.550,00', descricao: '200m² a 500m²', icon: '🏢' },
+          { porte: 'Grande', valor: 'R$ 2.500,00', descricao: 'Acima de 500m²', icon: '🏭' }
         ],
         rural: [
-          { porte: 'Pequeno', valor: 'R$ 1.000,00', descricao: 'Até 1 hectare', icon: '' },
-          { porte: 'Médio', valor: 'R$ 1.950,00', descricao: '1 a 5 hectares', icon: '' },
-          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '' }
+          { porte: 'Pequeno', valor: 'R$ 1.000,00', descricao: 'Até 1 hectare', icon: '🌾' },
+          { porte: 'Médio', valor: 'R$ 1.950,00', descricao: '1 a 5 hectares', icon: '🚜' },
+          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '🌳' }
         ]
       };
 
-      // Passo 1: selecionar local
       localOptions.forEach(opt => {
         opt.addEventListener('click', () => {
           localOptions.forEach(o => o.classList.remove('selected'));
@@ -1070,12 +1046,9 @@
 
       nextStep1.addEventListener('click', () => {
         if (!selectedLocal) return;
-        // Preencher pacotes com base no local
         renderPackages(selectedLocal.value);
-        // Avançar para step2
         step1.classList.remove('active');
         step2.classList.add('active');
-        // Reset seleção de pacote
         selectedPackage = null;
         nextStep2.disabled = true;
       });
@@ -1083,12 +1056,9 @@
       function renderPackages(localValue) {
         const pacotes = pacotesPorLocal[localValue] || pacotesPorLocal.residencial;
         packageContainer.innerHTML = '';
-        pacotes.forEach((pkg, index) => {
+        pacotes.forEach((pkg) => {
           const card = document.createElement('div');
           card.className = 'package-card';
-          card.dataset.porte = pkg.porte;
-          card.dataset.valor = pkg.valor;
-          card.dataset.descricao = pkg.descricao;
           card.innerHTML = `
             <div class="package-icon">${pkg.icon}</div>
             <h3>${pkg.porte}</h3>
@@ -1117,13 +1087,16 @@
 
       nextStep2.addEventListener('click', () => {
         if (!selectedPackage || !selectedLocal) return;
-        // Preencher resumo
         resumoDiagnostico.innerHTML = `
           <p><strong>Local:</strong> ${selectedLocal.nome}</p>
           <p><strong>Porte:</strong> ${selectedPackage.porte} — ${selectedPackage.descricao}</p>
           <p><strong>Valor estimado:</strong> ${selectedPackage.valor}</p>
         `;
-        // Se comercial, mostrar campo empresa
+        // Preencher campos ocultos do Web3Forms com dados do quiz
+        hiddenTipoLocal.value = selectedLocal.nome;
+        hiddenPorte.value = `${selectedPackage.porte} (${selectedPackage.descricao})`;
+        hiddenValor.value = selectedPackage.valor;
+
         if (selectedLocal.value === 'comercial') {
           empresaGroup.style.display = 'flex';
         } else {
@@ -1138,68 +1111,51 @@
         step2.classList.add('active');
       });
 
-      // ---------- ENVIO DO FORMULÁRIO PARA O EMAIL ----------
-      formDiagnostico.addEventListener('submit', (e) => {
+      // ---------- ENVIO VIA WEB3FORMS (AJAX) ----------
+      formDiagnostico.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        // Validação mínima
         const nome = document.getElementById('nome').value.trim();
         const whatsapp = document.getElementById('whatsapp').value.trim();
         const email = document.getElementById('email').value.trim();
         const endereco = document.getElementById('endereco').value.trim();
-        const empresa = document.getElementById('empresa').value.trim();
-        const obs = document.getElementById('obs').value.trim();
 
         if (!nome || !whatsapp || !email || !endereco) {
           alert('Por favor, preencha todos os campos obrigatórios (*).');
           return;
         }
 
-        // Montar corpo do e-mail
-        const assunto = `Diagnóstico Dedetização - ${selectedLocal.nome} / ${selectedPackage.porte}`;
-        const corpo = `
-          ============================================
-          DIAGNÓSTICO DE DEDETIZAÇÃO
-          ============================================
-          
-          DADOS DO CLIENTE:
-          Nome completo: ${nome}
-          ${selectedLocal.value === 'comercial' && empresa ? `Nome da empresa: ${empresa}` : ''}
-          WhatsApp: ${whatsapp}
-          E-mail: ${email}
-          Endereço completo: ${endereco}
-          Observações: ${obs || 'Nenhuma'}
-          
-          ============================================
-          DETALHES DO SERVIÇO:
-          Tipo de local: ${selectedLocal.nome}
-          Porte: ${selectedPackage.porte} (${selectedPackage.descricao})
-          Valor estimado: ${selectedPackage.valor}
-          
-          ============================================
-          ENVIADO EM: ${new Date().toLocaleString('pt-BR')}
-        `;
-
-        // Codificar para mailto - EMAIL DE DESTINO
-        const mailtoLink = `mailto:edicoespro684@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
-
-        // Abrir cliente de e-mail
-        window.location.href = mailtoLink;
-
-        // Avançar para a tela de agradecimento após pequeno delay
         const enviarBtn = document.getElementById('enviarBtn');
+        const formData = new FormData(formDiagnostico);
+
         enviarBtn.textContent = 'Enviando...';
         enviarBtn.disabled = true;
 
-        setTimeout(() => {
-          step3.classList.remove('active');
-          step4.classList.add('active');
-          // Rolar para o topo do card para garantir visibilidade da mensagem
-          document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 1200);
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Sucesso: mostra a tela de agradecimento
+            step3.classList.remove('active');
+            step4.classList.add('active');
+            document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            alert('Ocorreu um erro ao enviar. Tente novamente.');
+            enviarBtn.textContent = 'Enviar Diagnóstico';
+            enviarBtn.disabled = false;
+          }
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Não foi possível enviar. Verifique sua conexão e tente novamente.');
+          enviarBtn.textContent = 'Enviar Diagnóstico';
+          enviarBtn.disabled = false;
+        });
       });
 
-      // ---------- SCROLL SUAVE PARA ÂNCORAS ----------
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
           const href = this.getAttribute('href');
