@@ -567,3 +567,608 @@
       font-weight: 600;
       margin-top: 1.2rem;
       border: 2px solid #c8e6c9;
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      color: #1b5e20;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .section-title span {
+      border-bottom: 4px solid #2e7d32;
+      padding-bottom: 8px;
+    }
+
+    .sobre-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 3rem;
+      box-shadow: 0 15px 30px rgba(0, 40, 0, 0.06);
+    }
+
+    .sobre-text {
+      flex: 1 1 300px;
+    }
+
+    .sobre-text h3 {
+      font-size: 1.8rem;
+      color: #1b5e20;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-text p {
+      color: #2e4a2e;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-img {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sobre-img svg {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .contato-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .contato-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem;
+      flex: 1 1 250px;
+      box-shadow: 0 10px 25px rgba(0, 40, 0, 0.05);
+      border: 1px solid #d0e8d0;
+      text-align: center;
+    }
+
+    .contato-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contato-card h4 {
+      color: #1b5e20;
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      background: #1b3b1b;
+      color: #d9f0d9;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 0.6rem 1.2rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .logo img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .quiz-container {
+        padding: 1.5rem 1.2rem;
+        border-radius: 24px;
+      }
+
+      .quiz-container h1 {
+        font-size: 1.8rem;
+      }
+
+      .step-title {
+        font-size: 1.3rem;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .option-img-wrap {
+        height: 170px;
+      }
+
+      .package-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: span 1;
+      }
+
+      .sobre-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .section {
+        padding: 3rem 1.2rem;
+      }
+
+      .nav-menu {
+        width: 85%;
+      }
+
+      .thank-you-screen h2 {
+        font-size: 1.6rem;
+      }
+
+      .thank-you-icon {
+        width: 85px;
+        height: 85px;
+      }
+
+      .thank-you-icon svg {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        width: 100%;
+        padding: 0.8rem 1rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .quiz-container {
+        padding: 1.2rem 1rem;
+      }
+
+      .quiz-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .option-img-wrap {
+        height: 150px;
+      }
+
+      .thank-you-screen h2 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <img src="logo.png" alt="Logo Dedetização Premium">
+      <span>Controle de Pragas</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <nav class="nav-menu" id="navMenu">
+    <a href="#hero" class="nav-link">Início</a>
+    <a href="#sobre" class="nav-link">Sobre Nós</a>
+    <a href="#contato" class="nav-link">Contato</a>
+    <a href="#hero" class="nav-link">Diagnóstico</a>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="slider-bg" id="sliderBg"></div>
+
+    <div class="quiz-container">
+      <h1>Diagnóstico Profissional</h1>
+      <p class="subhead">Responda e receba o pacote ideal para sua necessidade</p>
+
+      <div class="quiz-step active" id="step1">
+        <div class="step-title"><span>1</span> Qual o tipo de local?</div>
+        <div class="options-grid" id="localOptions">
+          <div class="option-card" data-value="residencial" data-nome="Residencial">
+            <div class="option-img-wrap">
+              <img src="images (1).jpg" alt="Residencial">
+            </div>
+            <div class="option-card-body">
+              <h3>Residencial</h3>
+              <p>Casas e apartamentos</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="comercial" data-nome="Comercial">
+            <div class="option-img-wrap">
+              <img src="images (2).jpg" alt="Comercial">
+            </div>
+            <div class="option-card-body">
+              <h3>Comercial</h3>
+              <p>Lojas, escritórios, indústrias</p>
+            </div>
+          </div>
+          <div class="option-card" data-value="rural" data-nome="Rural">
+            <div class="option-img-wrap">
+              <img src="Dedetizacao-de-terrenos-conheca-as-principais-metodologias-utilizadas-no-controle-de-pragas.webp" alt="Rural">
+            </div>
+            <div class="option-card-body">
+              <h3>Rural</h3>
+              <p>Sítios, fazendas, galpões</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn" id="nextStep1" disabled>Continuar</button>
+      </div>
+
+      <div class="quiz-step" id="step2">
+        <div class="step-title"><span>2</span> Escolha o porte do local</div>
+        <div id="packageContainer" class="package-grid"></div>
+        <div class="btn-group">
+          <button class="btn btn-outline" id="backStep2">Voltar</button>
+          <button class="btn" id="nextStep2" disabled>Continuar</button>
+        </div>
+      </div>
+
+      <div class="quiz-step" id="step3">
+        <div class="step-title"><span>3</span> Seus dados para contato</div>
+        <div class="resumo-diagnostico" id="resumoDiagnostico"></div>
+
+        <!-- FORMULÁRIO INTEGRADO COM WEB3FORMS -->
+        <form id="formDiagnostico" action="https://api.web3forms.com/submit" method="POST">
+          <!-- Access Key do Web3Forms -->
+          <input type="hidden" name="access_key" value="3c5d8fe8-5c0c-4faa-8109-aa732fc5723a">
+          <!-- Assunto do e-mail -->
+          <input type="hidden" name="subject" value="Novo Diagnóstico de Dedetização">
+          <!-- Nome do remetente que aparecerá no e-mail -->
+          <input type="hidden" name="from_name" value="Site Dedetização Premium">
+          <!-- Campos ocultos preenchidos dinamicamente com dados do quiz -->
+          <input type="hidden" name="Tipo de Local" id="hiddenTipoLocal">
+          <input type="hidden" name="Porte do Local" id="hiddenPorte">
+          <input type="hidden" name="Valor Estimado" id="hiddenValor">
+
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="nome">Nome completo *</label>
+              <input type="text" id="nome" name="Nome Completo" required placeholder="Seu nome">
+            </div>
+            <div class="form-group full" id="empresaGroup" style="display:none;">
+              <label for="empresa">Nome da empresa</label>
+              <input type="text" id="empresa" name="Nome da Empresa" placeholder="Nome da empresa">
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp *</label>
+              <input type="tel" id="whatsapp" name="WhatsApp" required placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="Email do Cliente" required placeholder="seu@email.com">
+            </div>
+            <div class="form-group full">
+              <label for="endereco">Endereço completo *</label>
+              <input type="text" id="endereco" name="Endereço Completo" required placeholder="Rua, número, bairro, cidade, estado">
+            </div>
+            <div class="form-group full">
+              <label for="obs">Observações adicionais</label>
+              <textarea id="obs" name="Observações" rows="2" placeholder="Descreva o problema..."></textarea>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" id="backStep3">Voltar</button>
+            <button type="submit" class="btn" id="enviarBtn">Enviar Diagnóstico</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="quiz-step" id="step4">
+        <div class="thank-you-screen active">
+          <div class="thank-you-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h2>Obrigado pelo envio!</h2>
+          <p>Recebemos o seu <span class="highlight">diagnóstico completo</span> com sucesso.</p>
+          <p>Nossa equipe irá analisar as informações e <span class="highlight">responderemos em breve</span> pelo WhatsApp ou e-mail informado.</p>
+          <div class="thank-you-badge">✓ Diagnóstico registrado com sucesso</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="sobre">
+    <h2 class="section-title"><span>Sobre Nós</span></h2>
+    <div class="sobre-content">
+      <div class="sobre-text">
+        <h3>+15 anos protegendo o que importa</h3>
+        <p>Somos especialistas em controle de pragas urbanas e rurais, com equipe técnica certificada e produtos de alta qualidade. Nosso compromisso é oferecer um serviço seguro, eficaz e com garantia.</p>
+        <p><strong>Atuamos em todo o Norte de Minas Gerais</strong>, atendendo residências, comércios e propriedades rurais com diagnóstico personalizado e acompanhamento pós-serviço.</p>
+        <p><strong>✓ Certificado válido de 120 dias</strong><br>
+        <strong>✓ Produtos registrados no Ministério da Saúde</strong><br>
+        <strong>✓ Técnicos uniformizados e treinados</strong></p>
+      </div>
+      <div class="sobre-img">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" fill="#e8f5e9"/>
+          <path d="M100 30 L160 60 L160 120 C160 155 130 175 100 185 C70 175 40 155 40 120 L40 60 Z" fill="#2e7d32"/>
+          <circle cx="100" cy="100" r="25" fill="white"/>
+          <path d="M100 70 L100 130 M70 100 L130 100" stroke="#2e7d32" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contato">
+    <h2 class="section-title"><span>Contato</span></h2>
+    <div class="contato-info">
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>WhatsApp</h4>
+        <p>(32) 9 9113-0370</p>
+      </div>
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>E-mail</h4>
+        <p>dedetizacaocomercial@gmail.com</p>
+      </div>
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>Atendimento</h4>
+        <p>Seg a Sáb, 7h às 19h</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Dedetização — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    (function() {
+      const sliderBg = document.getElementById('sliderBg');
+      const images = [
+        'Dedetizadora-01.webp',
+        '2imagem.jpg',
+        '1imagem.jpg',
+      ];
+
+      images.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide' + (index === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url(${img})`;
+        sliderBg.appendChild(slide);
+      });
+
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+
+      setInterval(nextSlide, 5000);
+
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      const overlay = document.getElementById('overlay');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navMenu.classList.contains('active')) toggleMenu();
+        });
+      });
+
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const step3 = document.getElementById('step3');
+      const step4 = document.getElementById('step4');
+      const localOptions = document.querySelectorAll('#localOptions .option-card');
+      const nextStep1 = document.getElementById('nextStep1');
+      const backStep2 = document.getElementById('backStep2');
+      const nextStep2 = document.getElementById('nextStep2');
+      const packageContainer = document.getElementById('packageContainer');
+      const backStep3 = document.getElementById('backStep3');
+      const formDiagnostico = document.getElementById('formDiagnostico');
+      const resumoDiagnostico = document.getElementById('resumoDiagnostico');
+      const empresaGroup = document.getElementById('empresaGroup');
+      const hiddenTipoLocal = document.getElementById('hiddenTipoLocal');
+      const hiddenPorte = document.getElementById('hiddenPorte');
+      const hiddenValor = document.getElementById('hiddenValor');
+
+      let selectedLocal = null;
+      let selectedPackage = null;
+
+      const pacotesPorLocal = {
+        residencial: [
+          { porte: 'Pequeno', valor: 'R$ 450,00', descricao: 'Até 80m²', icon: '' },
+          { porte: 'Médio', valor: 'R$ 680,00', descricao: '80m² a 150m²', icon: '' },
+          { porte: 'Grande', valor: 'R$ 950,00', descricao: 'Acima de 150m²', icon: '' }
+        ],
+        comercial: [
+          { porte: 'Pequeno', valor: 'R$ 950,00', descricao: 'Até 200m²', icon: '' },
+          { porte: 'Médio', valor: 'R$ 1.550,00', descricao: '200m² a 500m²', icon: '' },
+          { porte: 'Grande', valor: 'R$ 2.500,00', descricao: 'Acima de 500m²', icon: '' }
+        ],
+        rural: [
+          { porte: 'Pequeno', valor: 'R$ 1.000,00', descricao: 'Até 1 hectare', icon: '' },
+          { porte: 'Médio', valor: 'R$ 1.950,00', descricao: '1 a 5 hectares', icon: '' },
+          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '' }
+        ]
+      };
+
+      localOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          localOptions.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          selectedLocal = {
+            value: opt.dataset.value,
+            nome: opt.dataset.nome
+          };
+          nextStep1.disabled = false;
+        });
+      });
+
+      nextStep1.addEventListener('click', () => {
+        if (!selectedLocal) return;
+        renderPackages(selectedLocal.value);
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        selectedPackage = null;
+        nextStep2.disabled = true;
+      });
+
+      function renderPackages(localValue) {
+        const pacotes = pacotesPorLocal[localValue] || pacotesPorLocal.residencial;
+        packageContainer.innerHTML = '';
+        pacotes.forEach((pkg) => {
+          const card = document.createElement('div');
+          card.className = 'package-card';
+          card.innerHTML = `
+            <div class="package-icon">${pkg.icon}</div>
+            <h3>${pkg.porte}</h3>
+            <p>${pkg.descricao}</p>
+            <div class="price">${pkg.valor} <small>/ serviço</small></div>
+            <p style="font-size:0.85rem; color:#5a7a5a;">Garantia de 6 meses</p>
+          `;
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedPackage = {
+              porte: pkg.porte,
+              valor: pkg.valor,
+              descricao: pkg.descricao
+            };
+            nextStep2.disabled = false;
+          });
+          packageContainer.appendChild(card);
+        });
+      }
+
+      backStep2.addEventListener('click', () => {
+        step2.classList.remove('active');
+        step1.classList.add('active');
+      });
+
+      nextStep2.addEventListener('click', () => {
+        if (!selectedPackage || !selectedLocal) return;
+        resumoDiagnostico.innerHTML = `
+          <p><strong>Local:</strong> ${selectedLocal.nome}</p>
+          <p><strong>Porte:</strong> ${selectedPackage.porte} — ${selectedPackage.descricao}</p>
+          <p><strong>Valor estimado:</strong> ${selectedPackage.valor}</p>
+        `;
+        // Preencher campos ocultos do Web3Forms com dados do quiz
+        hiddenTipoLocal.value = selectedLocal.nome;
+        hiddenPorte.value = `${selectedPackage.porte} (${selectedPackage.descricao})`;
+        hiddenValor.value = selectedPackage.valor;
+
+        if (selectedLocal.value === 'comercial') {
+          empresaGroup.style.display = 'flex';
+        } else {
+          empresaGroup.style.display = 'none';
+        }
+        step2.classList.remove('active');
+        step3.classList.add('active');
+      });
+
+      backStep3.addEventListener('click', () => {
+        step3.classList.remove('active');
+        step2.classList.add('active');
+      });
+
+      // ---------- ENVIO VIA WEB3FORMS (AJAX) ----------
+      formDiagnostico.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const nome = document.getElementById('nome').value.trim();
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const endereco = document.getElementById('endereco').value.trim();
+
+        if (!nome || !whatsapp || !email || !endereco) {
+          alert('Por favor, preencha todos os campos obrigatórios (*).');
+          return;
+        }
+
+        const enviarBtn = document.getElementById('enviarBtn');
+        const formData = new FormData(formDiagnostico);
+
+        enviarBtn.textContent = 'Enviando...';
+        enviarBtn.disabled = true;
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            // Sucesso: mostra a tela de agradecimento
+            step3.classList.remove('active');
+            step4.classList.add('active');
+            document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } else {
+            alert('Ocorreu um erro ao enviar. Tente novamente.');
+            enviarBtn.textContent = 'Enviar Diagnóstico';
+            enviarBtn.disabled = false;
+          }
+        })
+        .catch(error => {
+          console.error('Erro:', error);
+          alert('Não foi possível enviar. Verifique sua conexão e tente novamente.');
+          enviarBtn.textContent = 'Enviar Diagnóstico';
+          enviarBtn.disabled = false;
+        });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
