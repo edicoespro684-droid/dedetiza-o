@@ -505,6 +505,79 @@
       color: #1b5e20;
     }
 
+    /* ---------- TELA DE AGRADECIMENTO (NOVA) ---------- */
+    .thank-you-screen {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .thank-you-screen.active {
+      display: block;
+    }
+
+    .thank-you-icon {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, #2e7d32, #1b5e20);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 30px rgba(46, 125, 50, 0.35);
+      animation: popIn 0.5s ease;
+    }
+
+    .thank-you-icon svg {
+      width: 55px;
+      height: 55px;
+      stroke: #ffffff;
+      stroke-width: 4;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .thank-you-screen h2 {
+      font-size: 2rem;
+      color: #1b5e20;
+      margin-bottom: 0.8rem;
+      font-weight: 700;
+    }
+
+    .thank-you-screen p {
+      font-size: 1.15rem;
+      color: #3e5e3e;
+      line-height: 1.7;
+      max-width: 550px;
+      margin: 0 auto 0.8rem;
+    }
+
+    .thank-you-screen .highlight {
+      color: #1b5e20;
+      font-weight: 700;
+    }
+
+    .thank-you-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #1b5e20;
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      margin-top: 1.2rem;
+      border: 2px solid #c8e6c9;
+      font-size: 0.95rem;
+    }
+
     /* Seções extras */
     .section {
       padding: 5rem 2rem;
@@ -659,6 +732,20 @@
       .nav-menu {
         width: 85%;
       }
+
+      .thank-you-screen h2 {
+        font-size: 1.6rem;
+      }
+
+      .thank-you-icon {
+        width: 85px;
+        height: 85px;
+      }
+
+      .thank-you-icon svg {
+        width: 45px;
+        height: 45px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -681,6 +768,10 @@
 
       .option-img-wrap {
         height: 150px;
+      }
+
+      .thank-you-screen h2 {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -809,6 +900,21 @@
           </div>
         </form>
       </div>
+
+      <!-- STEP 4: Tela de Agradecimento (NOVA) -->
+      <div class="quiz-step" id="step4">
+        <div class="thank-you-screen active">
+          <div class="thank-you-icon">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h2>Obrigado pelo envio!</h2>
+          <p>Recebemos o seu <span class="highlight">diagnóstico completo</span> com sucesso.</p>
+          <p>Nossa equipe irá analisar as informações e <span class="highlight">responderemos em breve</span> pelo WhatsApp ou e-mail informado.</p>
+          <div class="thank-you-badge">✓ Diagnóstico registrado com sucesso</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -847,7 +953,7 @@
       <div class="contato-card">
         <div class="icon"></div>
         <h4>E-mail</h4>
-        <p>dedetização@gmail.com</p>
+        <p>edicoespro684@gmail.com</p>
       </div>
       <div class="contato-card">
         <div class="icon"></div>
@@ -915,6 +1021,7 @@
       const step1 = document.getElementById('step1');
       const step2 = document.getElementById('step2');
       const step3 = document.getElementById('step3');
+      const step4 = document.getElementById('step4');
       const localOptions = document.querySelectorAll('#localOptions .option-card');
       const nextStep1 = document.getElementById('nextStep1');
       const backStep2 = document.getElementById('backStep2');
@@ -944,7 +1051,7 @@
         rural: [
           { porte: 'Pequeno', valor: 'R$ 1.000,00', descricao: 'Até 1 hectare', icon: '' },
           { porte: 'Médio', valor: 'R$ 1.950,00', descricao: '1 a 5 hectares', icon: '' },
-          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '' }
+          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '🌳' }
         ]
       };
 
@@ -1073,21 +1180,23 @@
           ENVIADO EM: ${new Date().toLocaleString('pt-BR')}
         `;
 
-        // Codificar para mailto
-        const mailtoLink = `mailto:dedetização@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+        // Codificar para mailto - EMAIL DE DESTINO
+        const mailtoLink = `mailto:edicoespro684@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
 
         // Abrir cliente de e-mail
         window.location.href = mailtoLink;
 
-        // Feedback visual
+        // Avançar para a tela de agradecimento após pequeno delay
         const enviarBtn = document.getElementById('enviarBtn');
-        enviarBtn.textContent = 'Abrindo e-mail...';
+        enviarBtn.textContent = 'Enviando...';
         enviarBtn.disabled = true;
+
         setTimeout(() => {
-          enviarBtn.textContent = 'Enviar Diagnóstico';
-          enviarBtn.disabled = false;
-          alert('Seu cliente de e-mail foi aberto. Verifique e envie a mensagem para concluir.');
-        }, 1500);
+          step3.classList.remove('active');
+          step4.classList.add('active');
+          // Rolar para o topo do card para garantir visibilidade da mensagem
+          document.querySelector('.quiz-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1200);
       });
 
       // ---------- SCROLL SUAVE PARA ÂNCORAS ----------
