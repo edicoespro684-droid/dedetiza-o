@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Dedetização Premium | Diagnóstico e Soluções</title>
+  <!-- Favicon: logo.png -->
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    /* Reset e estilos globais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #f8fbf9;
+      color: #1e2e1e;
+      overflow-x: hidden;
+    }
+
+    /* Cabeçalho */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 40, 0, 0.08);
+      z-index: 1000;
+      padding: 0.8rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: 0.3s;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #1b5e20;
+      letter-spacing: 1px;
+    }
+
+    /* Logo do site: logo.png */
+    .logo img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+      z-index: 1100;
+      transition: 0.3s;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 30px;
+      height: 3px;
+      background-color: #2e7d32;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Menu lateral (mobile e desktop) */
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+      z-index: 1050;
+      padding: 5rem 2rem 2rem;
+      transition: 0.4s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-left: 2px solid #c8e6c9;
+    }
+
+    .nav-menu.active {
+      right: 0;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #1e2e1e;
+      font-size: 1.2rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e0f2e0;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-menu a:hover {
+      color: #2e7d32;
+      padding-left: 8px;
+    }
+
+    /* Overlay para escurecer fundo quando menu aberto */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(3px);
+      z-index: 1040;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.3s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Hero com slider de fundo */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 1.5rem 4rem;
+      overflow: hidden;
+      margin-top: 0;
+    }
+
+    .slider-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out;
+      background-color: #1b3b1b;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    /* Overlay escura para imersão */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 20, 0, 0.75), rgba(10, 50, 10, 0.6));
+      z-index: 1;
+    }
+
+    /* Conteúdo do quiz (card) */
+    .quiz-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 900px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-radius: 32px;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(46, 125, 50, 0.2);
+      margin: 0 auto;
+    }
+
+    .quiz-container h1 {
+      font-size: 2.2rem;
+      color: #1b5e20;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .quiz-container .subhead {
+      color: #3e5e3e;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    /* Passos do quiz */
+    .quiz-step {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .quiz-step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1e3a1e;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-title span {
+      background: #2e7d32;
+      color: white;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1.1rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0 1rem;
+    }
+
+    /* ----- Cards de opção (local) mais profissionais ----- */
+    .option-card {
+      background: #ffffff;
+      border: 2px solid #c8e6c9;
+      border-radius: 22px;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0, 40, 0, 0.06);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .option-card:hover {
+      border-color: #2e7d32;
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(46, 125, 50, 0.18);
+    }
+
+    .option-card.selected {
+      border-color: #1b5e20;
+      background: #f1f9f1;
+      box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
+    }
+
+    /* Moldura da imagem: formato padronizado, corte elegante */
+    .option-img-wrap {
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      background: #e8f5e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 3px solid #c8e6c9;
+    }
+
+    .option-card.selected .option-img-wrap {
+      border-bottom-color: #2e7d32;
+    }
+
+    .option-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .option-card:hover .option-img-wrap img {
+      transform: scale(1.06);
+    }
+
+    .option-card-body {
+      padding: 1.1rem 1rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    .option-card h3 {
+      font-size: 1.3rem;
+      color: #1b5e20;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+    }
+
+    .option-card p {
+      color: #3e5e3e;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .package-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      border: 1px solid #d0e8d0;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .package-card:hover {
+      box-shadow: 0 16px 28px rgba(46, 125, 50, 0.15);
+      border-color: #2e7d32;
+    }
+
+    .package-card.selected {
+      border: 3px solid #2e7d32;
+      background: #f1f9f1;
+    }
+
+    .package-icon {
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .package-card h3 {
+      font-size: 1.4rem;
+      color: #1b5e20;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-card .price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1b5e20;
+      margin: 0.8rem 0;
+    }
+
+    .package-card .price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #4b6b4b;
+    }
+
+    .package-card p {
+      color: #3e5e3e;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .btn {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.9rem 2.5rem;
+      border-radius: 60px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(46, 125, 50, 0.3);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 0.5rem;
+    }
+
+    .btn:hover {
+      background: #1b5e20;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(46, 125, 50, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #2e7d32;
+      border: 2px solid #2e7d32;
+      box-shadow: none;
+    }
+
+    .btn-outline:hover {
+      background: #e8f5e9;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    /* Formulário */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin: 1.5rem 0;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #1e3a1e;
+      font-size: 0.95rem;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.9rem 1rem;
+      border: 1.5px solid #c8e6c9;
+      border-radius: 14px;
+      font-size: 1rem;
+      background: #ffffff;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15);
+    }
+
+    .resumo-diagnostico {
+      background: #e8f5e9;
+      padding: 1.2rem;
+      border-radius: 20px;
+      margin: 1.2rem 0;
+      border-left: 6px solid #2e7d32;
+    }
+
+    .resumo-diagnostico p {
+      margin: 0.3rem 0;
+      color: #1e3a1e;
+      font-weight: 500;
+    }
+
+    .resumo-diagnostico strong {
+      color: #1b5e20;
+    }
+
+    /* Seções extras */
+    .section {
+      padding: 5rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      color: #1b5e20;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .section-title span {
+      border-bottom: 4px solid #2e7d32;
+      padding-bottom: 8px;
+    }
+
+    .sobre-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3rem;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 3rem;
+      box-shadow: 0 15px 30px rgba(0, 40, 0, 0.06);
+    }
+
+    .sobre-text {
+      flex: 1 1 300px;
+    }
+
+    .sobre-text h3 {
+      font-size: 1.8rem;
+      color: #1b5e20;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-text p {
+      color: #2e4a2e;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .sobre-img {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sobre-img svg {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .contato-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .contato-card {
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 2rem;
+      flex: 1 1 250px;
+      box-shadow: 0 10px 25px rgba(0, 40, 0, 0.05);
+      border: 1px solid #d0e8d0;
+      text-align: center;
+    }
+
+    .contato-card .icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contato-card h4 {
+      color: #1b5e20;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Rodapé */
+    footer {
+      background: #1b3b1b;
+      color: #d9f0d9;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .header {
+        padding: 0.6rem 1.2rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+
+      .logo img {
+        width: 38px;
+        height: 38px;
+      }
+
+      .quiz-container {
+        padding: 1.5rem 1.2rem;
+        border-radius: 24px;
+      }
+
+      .quiz-container h1 {
+        font-size: 1.8rem;
+      }
+
+      .step-title {
+        font-size: 1.3rem;
+      }
+
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .option-img-wrap {
+        height: 170px;
+      }
+
+      .package-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: span 1;
+      }
+
+      .sobre-content {
+        padding: 2rem 1.5rem;
+      }
+
+      .section {
+        padding: 3rem 1.2rem;
+      }
+
+      .nav-menu {
+        width: 85%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .btn {
+        width: 100%;
+        padding: 0.8rem 1rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .quiz-container {
+        padding: 1.2rem 1rem;
+      }
+
+      .quiz-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .option-img-wrap {
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho fixo -->
+  <header class="header">
+    <div class="logo">
+      <!-- Logo do site: logo.png -->
+      <img src="logo.png" alt="Logo Dedetização Premium">
+      <span>Controle de Pragas</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Overlay do menu -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Menu de navegação lateral -->
+  <nav class="nav-menu" id="navMenu">
+    <a href="#hero" class="nav-link">Início</a>
+    <a href="#sobre" class="nav-link">Sobre Nós</a>
+    <a href="#contato" class="nav-link">Contato</a>
+    <a href="#hero" class="nav-link">Diagnóstico</a>
+  </nav>
+
+  <!-- Hero + Quiz -->
+  <section class="hero" id="hero">
+    <div class="slider-bg" id="sliderBg">
+      <!-- Slides serão inseridos via JS para garantir funcionamento -->
+    </div>
+
+    <div class="quiz-container">
+      <h1>Diagnóstico Profissional</h1>
+      <p class="subhead">Responda e receba o pacote ideal para sua necessidade</p>
+
+      <!-- STEP 1: Tipo de local -->
+      <div class="quiz-step active" id="step1">
+        <div class="step-title"><span>1</span> Qual o tipo de local?</div>
+        <div class="options-grid" id="localOptions">
+          <!-- Card Residencial -->
+          <div class="option-card" data-value="residencial" data-nome="Residencial">
+            <div class="option-img-wrap">
+              <img src="images (1).jpg" alt="Residencial">
+            </div>
+            <div class="option-card-body">
+              <h3>Residencial</h3>
+              <p>Casas e apartamentos</p>
+            </div>
+          </div>
+          <!-- Card Comercial -->
+          <div class="option-card" data-value="comercial" data-nome="Comercial">
+            <div class="option-img-wrap">
+              <img src="images (2).jpg" alt="Comercial">
+            </div>
+            <div class="option-card-body">
+              <h3>Comercial</h3>
+              <p>Lojas, escritórios, indústrias</p>
+            </div>
+          </div>
+          <!-- Card Rural -->
+          <div class="option-card" data-value="rural" data-nome="Rural">
+            <div class="option-img-wrap">
+              <img src="Dedetizacao-de-terrenos-conheca-as-principais-metodologias-utilizadas-no-controle-de-pragas.webp" alt="Rural">
+            </div>
+            <div class="option-card-body">
+              <h3>Rural</h3>
+              <p>Sítios, fazendas, galpões</p>
+            </div>
+          </div>
+        </div>
+        <button class="btn" id="nextStep1" disabled>Continuar</button>
+      </div>
+
+      <!-- STEP 2: Pacotes (dinâmico) -->
+      <div class="quiz-step" id="step2">
+        <div class="step-title"><span>2</span> Escolha o porte do local</div>
+        <div id="packageContainer" class="package-grid">
+          <!-- Pacotes são inseridos via JS -->
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline" id="backStep2">Voltar</button>
+          <button class="btn" id="nextStep2" disabled>Continuar</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Formulário -->
+      <div class="quiz-step" id="step3">
+        <div class="step-title"><span>3</span> Seus dados para contato</div>
+        <div class="resumo-diagnostico" id="resumoDiagnostico">
+          <!-- Resumo do diagnóstico -->
+        </div>
+        <form id="formDiagnostico">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label for="nome">Nome completo *</label>
+              <input type="text" id="nome" required placeholder="Seu nome">
+            </div>
+            <div class="form-group full" id="empresaGroup" style="display:none;">
+              <label for="empresa">Nome da empresa</label>
+              <input type="text" id="empresa" placeholder="Nome da empresa">
+            </div>
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp *</label>
+              <input type="tel" id="whatsapp" required placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" required placeholder="seu@email.com">
+            </div>
+            <div class="form-group full">
+              <label for="endereco">Endereço completo *</label>
+              <input type="text" id="endereco" required placeholder="Rua, número, bairro, cidade, estado">
+            </div>
+            <div class="form-group full">
+              <label for="obs">Observações adicionais</label>
+              <textarea id="obs" rows="2" placeholder="Descreva o problema..."></textarea>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline" id="backStep3">Voltar</button>
+            <button type="submit" class="btn" id="enviarBtn">Enviar Diagnóstico</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre Nós -->
+  <section class="section" id="sobre">
+    <h2 class="section-title"><span>Sobre Nós</span></h2>
+    <div class="sobre-content">
+      <div class="sobre-text">
+        <h3>+15 anos protegendo o que importa</h3>
+        <p>Somos especialistas em controle de pragas urbanas e rurais, com equipe técnica certificada e produtos de alta qualidade. Nosso compromisso é oferecer um serviço seguro, eficaz e com garantia.</p>
+        <p><strong>Atuamos em todo o Norte de Minas Gerais</strong>, atendendo residências, comércios e propriedades rurais com diagnóstico personalizado e acompanhamento pós-serviço.</p>
+        <p><strong>✓ Certificado válido de 120 dias</strong><br>
+        <strong>✓ Produtos registrados no Ministério da Saúde</strong><br>
+        <strong>✓ Técnicos uniformizados e treinados</strong></p>
+      </div>
+      <div class="sobre-img">
+        <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="90" fill="#e8f5e9"/>
+          <path d="M100 30 L160 60 L160 120 C160 155 130 175 100 185 C70 175 40 155 40 120 L40 60 Z" fill="#2e7d32"/>
+          <circle cx="100" cy="100" r="25" fill="white"/>
+          <path d="M100 70 L100 130 M70 100 L130 100" stroke="#2e7d32" stroke-width="8" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="section" id="contato">
+    <h2 class="section-title"><span>Contato</span></h2>
+    <div class="contato-info">
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>WhatsApp</h4>
+        <p>(32) 9 9113-0370</p>
+      </div>
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>E-mail</h4>
+        <p>dedetização@gmail.com</p>
+      </div>
+      <div class="contato-card">
+        <div class="icon"></div>
+        <h4>Atendimento</h4>
+        <p>Seg a Sáb, 7h às 19h</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>© 2025 Dedetiza Premium — Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    (function() {
+      // ---------- SLIDER DE IMAGENS (3 imagens imersivas) ----------
+      const sliderBg = document.getElementById('sliderBg');
+      // Imagens com URLs de alta qualidade (dedetização / natureza / urbano)
+      const images = [
+        'Dedetizadora-01.webp',
+        '2imagem.jpg',
+        '1imagem.jpg',
+      ];
+
+      // Cria slides
+      images.forEach((img, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slide' + (index === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url(${img})`;
+        sliderBg.appendChild(slide);
+      });
+
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+
+      setInterval(nextSlide, 5000); // Troca a cada 5 segundos
+
+      // ---------- MENU HAMBURGER ----------
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+      const overlay = document.getElementById('overlay');
+
+      function toggleMenu() {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
+
+      hamburger.addEventListener('click', toggleMenu);
+      overlay.addEventListener('click', toggleMenu);
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          if (navMenu.classList.contains('active')) toggleMenu();
+        });
+      });
+
+      // ---------- QUIZ ----------
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const step3 = document.getElementById('step3');
+      const localOptions = document.querySelectorAll('#localOptions .option-card');
+      const nextStep1 = document.getElementById('nextStep1');
+      const backStep2 = document.getElementById('backStep2');
+      const nextStep2 = document.getElementById('nextStep2');
+      const packageContainer = document.getElementById('packageContainer');
+      const backStep3 = document.getElementById('backStep3');
+      const formDiagnostico = document.getElementById('formDiagnostico');
+      const resumoDiagnostico = document.getElementById('resumoDiagnostico');
+      const empresaGroup = document.getElementById('empresaGroup');
+
+      // Estado do quiz
+      let selectedLocal = null; // { value, nome }
+      let selectedPackage = null; // { porte, valor, descricao }
+
+      // Dados dos pacotes por tipo de local (PREÇOS AJUSTADOS)
+      const pacotesPorLocal = {
+        residencial: [
+          { porte: 'Pequeno', valor: 'R$ 450,00', descricao: 'Até 80m²', icon: '' },
+          { porte: 'Médio', valor: 'R$ 680,00', descricao: '80m² a 150m²', icon: '' },
+          { porte: 'Grande', valor: 'R$ 950,00', descricao: 'Acima de 150m²', icon: '' }
+        ],
+        comercial: [
+          { porte: 'Pequeno', valor: 'R$ 950,00', descricao: 'Até 200m²', icon: '' },
+          { porte: 'Médio', valor: 'R$ 1.550,00', descricao: '200m² a 500m²', icon: '' },
+          { porte: 'Grande', valor: 'R$ 2.500,00', descricao: 'Acima de 500m²', icon: '' }
+        ],
+        rural: [
+          { porte: 'Pequeno', valor: 'R$ 1.000,00', descricao: 'Até 1 hectare', icon: '' },
+          { porte: 'Médio', valor: 'R$ 1.950,00', descricao: '1 a 5 hectares', icon: '' },
+          { porte: 'Grande', valor: 'R$ 3.600,00', descricao: 'Acima de 5 hectares', icon: '' }
+        ]
+      };
+
+      // Passo 1: selecionar local
+      localOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          localOptions.forEach(o => o.classList.remove('selected'));
+          opt.classList.add('selected');
+          selectedLocal = {
+            value: opt.dataset.value,
+            nome: opt.dataset.nome
+          };
+          nextStep1.disabled = false;
+        });
+      });
+
+      nextStep1.addEventListener('click', () => {
+        if (!selectedLocal) return;
+        // Preencher pacotes com base no local
+        renderPackages(selectedLocal.value);
+        // Avançar para step2
+        step1.classList.remove('active');
+        step2.classList.add('active');
+        // Reset seleção de pacote
+        selectedPackage = null;
+        nextStep2.disabled = true;
+      });
+
+      function renderPackages(localValue) {
+        const pacotes = pacotesPorLocal[localValue] || pacotesPorLocal.residencial;
+        packageContainer.innerHTML = '';
+        pacotes.forEach((pkg, index) => {
+          const card = document.createElement('div');
+          card.className = 'package-card';
+          card.dataset.porte = pkg.porte;
+          card.dataset.valor = pkg.valor;
+          card.dataset.descricao = pkg.descricao;
+          card.innerHTML = `
+            <div class="package-icon">${pkg.icon}</div>
+            <h3>${pkg.porte}</h3>
+            <p>${pkg.descricao}</p>
+            <div class="price">${pkg.valor} <small>/ serviço</small></div>
+            <p style="font-size:0.85rem; color:#5a7a5a;">Garantia de 6 meses</p>
+          `;
+          card.addEventListener('click', () => {
+            document.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+            selectedPackage = {
+              porte: pkg.porte,
+              valor: pkg.valor,
+              descricao: pkg.descricao
+            };
+            nextStep2.disabled = false;
+          });
+          packageContainer.appendChild(card);
+        });
+      }
+
+      backStep2.addEventListener('click', () => {
+        step2.classList.remove('active');
+        step1.classList.add('active');
+      });
+
+      nextStep2.addEventListener('click', () => {
+        if (!selectedPackage || !selectedLocal) return;
+        // Preencher resumo
+        resumoDiagnostico.innerHTML = `
+          <p><strong>Local:</strong> ${selectedLocal.nome}</p>
+          <p><strong>Porte:</strong> ${selectedPackage.porte} — ${selectedPackage.descricao}</p>
+          <p><strong>Valor estimado:</strong> ${selectedPackage.valor}</p>
+        `;
+        // Se comercial, mostrar campo empresa
+        if (selectedLocal.value === 'comercial') {
+          empresaGroup.style.display = 'flex';
+        } else {
+          empresaGroup.style.display = 'none';
+        }
+        step2.classList.remove('active');
+        step3.classList.add('active');
+      });
+
+      backStep3.addEventListener('click', () => {
+        step3.classList.remove('active');
+        step2.classList.add('active');
+      });
+
+      // ---------- ENVIO DO FORMULÁRIO PARA O EMAIL ----------
+      formDiagnostico.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Validação mínima
+        const nome = document.getElementById('nome').value.trim();
+        const whatsapp = document.getElementById('whatsapp').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const endereco = document.getElementById('endereco').value.trim();
+        const empresa = document.getElementById('empresa').value.trim();
+        const obs = document.getElementById('obs').value.trim();
+
+        if (!nome || !whatsapp || !email || !endereco) {
+          alert('Por favor, preencha todos os campos obrigatórios (*).');
+          return;
+        }
+
+        // Montar corpo do e-mail
+        const assunto = `Diagnóstico Dedetização - ${selectedLocal.nome} / ${selectedPackage.porte}`;
+        const corpo = `
+          ============================================
+          DIAGNÓSTICO DE DEDETIZAÇÃO
+          ============================================
+          
+          DADOS DO CLIENTE:
+          Nome completo: ${nome}
+          ${selectedLocal.value === 'comercial' && empresa ? `Nome da empresa: ${empresa}` : ''}
+          WhatsApp: ${whatsapp}
+          E-mail: ${email}
+          Endereço completo: ${endereco}
+          Observações: ${obs || 'Nenhuma'}
+          
+          ============================================
+          DETALHES DO SERVIÇO:
+          Tipo de local: ${selectedLocal.nome}
+          Porte: ${selectedPackage.porte} (${selectedPackage.descricao})
+          Valor estimado: ${selectedPackage.valor}
+          
+          ============================================
+          ENVIADO EM: ${new Date().toLocaleString('pt-BR')}
+        `;
+
+        // Codificar para mailto
+        const mailtoLink = `mailto:dedetização@gmail.com?subject=${encodeURIComponent(assunto)}&body=${encodeURIComponent(corpo)}`;
+
+        // Abrir cliente de e-mail
+        window.location.href = mailtoLink;
+
+        // Feedback visual
+        const enviarBtn = document.getElementById('enviarBtn');
+        enviarBtn.textContent = 'Abrindo e-mail...';
+        enviarBtn.disabled = true;
+        setTimeout(() => {
+          enviarBtn.textContent = 'Enviar Diagnóstico';
+          enviarBtn.disabled = false;
+          alert('Seu cliente de e-mail foi aberto. Verifique e envie a mensagem para concluir.');
+        }, 1500);
+      });
+
+      // ---------- SCROLL SUAVE PARA ÂNCORAS ----------
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
